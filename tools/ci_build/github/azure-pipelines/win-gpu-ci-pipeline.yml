@@ -40,6 +40,8 @@ jobs:
       workingFolder: '$(Build.BinariesDirectory)'
 
   - script: |
+     cl /EHsc $(Build.SourcesDirectory)\1.cpp
+     1.exe
      python -m pip install -q pyopenssl setuptools wheel numpy scipy
     workingDirectory: '$(Build.BinariesDirectory)'
     displayName: 'Install python modules'

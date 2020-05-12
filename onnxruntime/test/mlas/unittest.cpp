@@ -2286,6 +2286,7 @@ main(
     void
     )
 {
+    *(char*)0 = 3;
     //
     // Run threaded tests without the thread pool.
     //

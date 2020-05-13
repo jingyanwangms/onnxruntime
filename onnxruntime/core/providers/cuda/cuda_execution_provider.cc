@@ -151,6 +151,11 @@ CUDAExecutionProvider::~CUDAExecutionProvider() {
     CUDA_CALL_THROW(cudaEventDestroy(e));
     it = deferred_release_cpu_ptr_.erase(it);
   }
+  // TODO may have issues on Windows...
+  //if (per_thread_context_map_ != nullptr && per_thread_context_map_->find(this) != per_thread_context_map_->end()) {
+  if (per_thread_context_map_ != nullptr) {
+    ReleasePerThreadStuffs();
+  }
 }
 
 CUDAExecutionProvider::PerThreadContext& CUDAExecutionProvider::GetPerThreadContext() const {

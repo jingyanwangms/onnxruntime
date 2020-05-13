@@ -148,6 +148,10 @@ jobs:
           workingDirectory: '$(Build.SourcesDirectory)\csharp'
 
       - ${{ if eq(parameters.RunTests, true) }}:
+        - task: PublishBuildArtifacts@1
+          inputs:
+            pathtoPublish: '$(Build.BinariesDirectory)\$(BuildConfig)\$(BuildConfig)'
+            artifactName: 'winml_binaries'
         - script: |
            mklink  /D /J $(Build.BinariesDirectory)\$(BuildConfig)\models $(Build.BinariesDirectory)\models
            DIR dist\ /S /B > wheel_filename_file
